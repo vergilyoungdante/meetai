@@ -1,14 +1,21 @@
 package org.acme.domain.problemFact;
 
 import org.acme.domain.AbstractPersistable;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
+@Table(name = "person")
 public class Person extends AbstractPersistable {
-    @Schema(title = "姓名")
+
+    @NotBlank(message = "不能输入空格")
+    @NotNull(message = "输入不能为空")
+    @Column(name = "full_name")
     private String fullName;
 
     public String getFullName() {

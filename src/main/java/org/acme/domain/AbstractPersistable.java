@@ -3,13 +3,17 @@ package org.acme.domain;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.optaplanner.core.api.domain.lookup.PlanningId;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
+@MappedSuperclass
 public abstract class AbstractPersistable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    @Column(nullable = false)
     protected Long id;
 
     protected AbstractPersistable() {
