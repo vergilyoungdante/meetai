@@ -3,12 +3,20 @@ package org.acme.domain.problemFact;
 import org.acme.domain.AbstractPersistable;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+@Entity
+@Table(name = "day")
 public class Day extends AbstractPersistable {
 
+    @Positive
+    @Column(name = "day_of_year", nullable = false)
     @Schema(title = "一年中的第多少天")
     private int dayOfYear;
     private static final DateTimeFormatter DAY_FORMATTER = DateTimeFormatter.ofPattern("E", Locale.CHINA);

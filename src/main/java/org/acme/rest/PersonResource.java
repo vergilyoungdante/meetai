@@ -21,15 +21,25 @@ public class PersonResource {
     PersonRepository personRepository;
 
     @GET
-    public List<Person> allPerson(){
+    public List<Person> allPerson() {
         return personRepository.listAll();
+    }
+
+    @GET
+    @Path("/{personID}")
+    public Person getPerson(@PathParam("personID") Long personID){
+        Person person = personRepository.findById(personID);
+        if(person==null){
+            throw new WebApplicationException("任务ID" + personID + "不存在",404);
+        }
+        return person;
     }
 
     @POST
     @Transactional
-    public Response createPerson(Person person){
-        if(person.getId()!=null){
-            throw new WebApplicationException("创建新人物时不能带有id",400);
+    public Response createPerson(Person person) {
+        if (person.getId() != null) {
+            throw new WebApplicationException("创建新人物时不能带有id", 400);
         }
 
         personRepository.persist(person);

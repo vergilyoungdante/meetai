@@ -1,6 +1,5 @@
 package org.acme.domain;
 
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.optaplanner.core.api.domain.lookup.PlanningId;
 
 import javax.persistence.Column;
